@@ -1,0 +1,44 @@
+<h1>{{title}}</h1>
+
+<style>
+    .keyboard-button {
+        margin: 10px;
+    }
+</style>
+
+<div>
+    <a href="/firetv">Amazon Fire TV</a>
+</div>
+
+<div>
+    <h2>Keyboard</h2>
+    {{#each keyTable}}
+        <button class="keyboard-button" onclick="sendKey('{{this}}')">{{this}}</button>
+    {{/each}}
+</div>
+
+<div>
+    <h2>Consumer</h2>
+    <button class="keyboard-button" onclick="sendConsumer('PLAY')">Play</button>
+    <button class="keyboard-button" onclick="sendConsumer('STOP')">Stop</button>
+    <button class="keyboard-button" onclick="sendConsumer('REWIND')">&lt; Rewind</button>
+    <button class="keyboard-button" onclick="sendConsumer('FORWARD')">&gt; Forward</button>
+    <button class="keyboard-button" onclick="sendConsumer('HOME')">Home</button>
+    <button class="keyboard-button" onclick="sendConsumer('MUTE')">Mute</button>
+    <button class="keyboard-button" onclick="sendConsumer('VOLUP')">Volume +</button>
+    <button class="keyboard-button" onclick="sendConsumer('VOLDOWN')">Volume -</button>
+</div>
+
+<script>
+    function sendKey(key) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "/keyboard/" + key, true);
+        xhttp.send();
+    }
+
+    function sendConsumer(key) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "/consumer/" + key, true);
+        xhttp.send();
+    }
+</script>
